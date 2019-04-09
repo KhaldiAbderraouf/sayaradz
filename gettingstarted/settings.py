@@ -76,11 +76,11 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'protechsayaradz.herokuapp.com3000',
+    'protechsayaradz.herokuapp.com:3000',
     'protechsayaradz.herokuapp.com:5000',
 ]
 CORS_ORIGIN_REGEX_WHITELIST = [
-    'protechsayaradz.herokuapp.com3000',
+    'protechsayaradz.herokuapp.com:3000',
     'protechsayaradz.herokuapp.com:5000',
 ]
 
