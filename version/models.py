@@ -10,6 +10,7 @@ class Version(models.Model):
     Nom_Version = models.CharField(max_length=200)
     Id_Modele = models.ForeignKey(Modele, on_delete=models.CASCADE, related_name='Version_set')
     option_Version = models.ManyToManyField(Option, through='Option_Version',through_fields=('version', 'option', 'Default'))
+    Image = models.ImageField(upload_to='version', default='version/default.png', blank=True)
 
 class Option_Version(models.Model):
     option = models.ForeignKey(Option, on_delete=models.CASCADE)
