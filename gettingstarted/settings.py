@@ -22,12 +22,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+SECRET_KEY = 'x+#h^6i+0-zi4c%de6esy=s&%eziik)r8rrk+qv6mb(8z-@w3y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.43.106',
+    '127.0.0.1',
+    '0.0.0.0',
+    'localhost',
+    'sayara.dz',
+    'raouf',
+    '78d9ab04.ngrok.io'
+]
 
 
 # Application definition
@@ -40,6 +48,21 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hello",
+'rest_framework',
+    'corsheaders',
+    'marque',
+    'modele',
+    'version',
+    'option',
+    'couleur',
+    'tarif',
+    'reservation',
+    #accounts handling
+    'accounts',
+    #social authentication
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +74,24 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    '192.168.56.1:3000'
+    'localhost:3000',
+    '78d9ab04.ngrok.io:3000',
+    'localhost:5000',
+    '78d9ab04.ngrok.io:5000',
+]
+CORS_ORIGIN_REGEX_WHITELIST = [
+    '192.168.56.1:3000'
+    'localhost:3000',
+    '78d9ab04.ngrok.io:3000',
+    'localhost:5000',
+    '78d9ab04.ngrok.io:5000',
+]
+
 
 ROOT_URLCONF = "gettingstarted.urls"
 
@@ -69,6 +110,41 @@ TEMPLATES = [
         },
     }
 ]
+
+AUTHENTICATION_BACKENDS = (
+    #Google Authentication
+    'social_core.backends.google.GoogleOAuth2',
+
+    #Facebook authentication
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+#### Social Authentication parameters
+
+# Facebook configurations
+SOCIAL_AUTH_FACEBOOK_KEY = '401775580383688'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'fabdcec4d7eff90a4fed57a50dd2461d'
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '3.2'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', ]
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+# Google Configurations
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '605502621441-sfn3h6h1vs60rvk00ovl0d2ihepfvtqe.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'RLLu4eNecOJJy4ov7By1tTem'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
+
+
+# Other Configurations
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+SOCIAL_AUTH_USER_MODEL = 'accounts.Automobiliste'
+AUTH_USER_MODEL = 'accounts.User'
+
 
 WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
@@ -115,5 +191,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static-server','media-root')
 
 django_heroku.settings(locals())
