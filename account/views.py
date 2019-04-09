@@ -8,7 +8,7 @@ from rest_framework.generics import ListCreateAPIView, CreateAPIView, ListAPIVie
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from accounts.models import Fabriquant
+from account.models import Fabriquant
 from . import serializers
 from . import models
 from . import permissions

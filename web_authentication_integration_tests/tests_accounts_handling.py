@@ -1,17 +1,17 @@
 from oauth2_provider.models import Application
 from rest_framework.test import APITestCase, APIClient
 
-import accounts.models as accounts
+import account.models as account
 from marque.models import Marque
-from sayaradz import settings
+from gettingstarted import settings
 
-CREATE_UTILISATUERS = '/accounts/fabriquant/utilisateur'
-LIST_UTILISTATEURS  = '/accounts/fabriquant/utlisateur'
-CREATE_ADMIN_FABRIQUANT = '/accounts/fabriquant'
-RUD_UTILISATEUR_FABRIQUANT = '/accounts/fabriquant/utilisateur'
+CREATE_UTILISATUERS = '/account/fabriquant/utilisateur'
+LIST_UTILISTATEURS  = '/account/fabriquant/utlisateur'
+CREATE_ADMIN_FABRIQUANT = '/account/fabriquant'
+RUD_UTILISATEUR_FABRIQUANT = '/account/fabriquant/utilisateur'
 
 def create_oauth_application():
-    admin = accounts.User.objects.get(email= 'admin@sayara.dz')
+    admin = account.User.objects.get(email= 'admin@sayara.dz')
     app = Application.objects.create(
         client_type=Application.CLIENT_CONFIDENTIAL,
         authorization_grant_type=Application.GRANT_PASSWORD,
@@ -40,7 +40,7 @@ def create_marque(Id_marque, Nom_Marque):
 
 def create_utlisateur_fabriquant(email, password,nom,prenom,adresse,tel ,marque):
 
-    user = accounts.Fabriquant.objects.create_user(email,
+    user = account.Fabriquant.objects.create_user(email,
                                          password=password,
                                          nom=nom,
                                          prenom=prenom,
@@ -54,7 +54,7 @@ def create_utlisateur_fabriquant(email, password,nom,prenom,adresse,tel ,marque)
 def create_admin_fabriquant(email, password, nom, prenom, adresse, tel, id_marque, nom_marque):
 
     marque = create_marque(id_marque,nom_marque)
-    user = accounts.Fabriquant.objects.create_superuser(email,
+    user = account.Fabriquant.objects.create_superuser(email,
                                                    password=password,
                                                    nom=nom,
                                                    prenom=prenom,
@@ -123,7 +123,7 @@ def get_authentication_response(email,password, app):
 
     data = create_authentication_data(email=email, password=password, app=app)
     client = APIClient()
-    authentication_response = client.post('/accounts/token', data)
+    authentication_response = client.post('/account/token', data)
     return authentication_response
 
 
@@ -135,7 +135,7 @@ def authenticate_client(authentication_response):
 
 class AdminstrateurTestCase(APITestCase):
     def setUp(self):
-        admin = accounts.Administrateur.objects.create_superuser(email = 'admin@sayara.dz', password = 'adminadmin')
+        admin = account.Administrateur.objects.create_superuser(email = 'admin@sayara.dz', password = 'adminadmin')
         admin.save()
 
         admin_renault = create_admin_fabriquant(
@@ -249,7 +249,7 @@ class AdminstrateurTestCase(APITestCase):
 
 class AdminstrateurFabriquantTestCase(APITestCase):
     def setUp(self):
-        admin = accounts.Administrateur.objects.create_superuser(email = 'admin@sayara.dz', password = 'adminadmin')
+        admin = account.Administrateur.objects.create_superuser(email = 'admin@sayara.dz', password = 'adminadmin')
         admin.save()
 
         admin_renault = create_admin_fabriquant(
@@ -346,7 +346,7 @@ class AdminstrateurFabriquantTestCase(APITestCase):
 
 class UtilisateurFabriquantTestCase(APITestCase):
     def setUp(self):
-        admin = accounts.Administrateur.objects.create_superuser(email = 'admin@sayara.dz', password = 'adminadmin')
+        admin = account.Administrateur.objects.create_superuser(email = 'admin@sayara.dz', password = 'adminadmin')
         admin.save()
 
         admin_renault = create_admin_fabriquant(

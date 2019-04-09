@@ -21,7 +21,7 @@ urlpatterns = [
     path("", hello.views.index, name="index"),
     path("db/", hello.views.db, name="db"),
     path("admin/", admin.site.urls),
-path('accounts/',include('accounts.urls')),
+    path('account/',include('account.urls')),
     path('marque/',include('marque.urls')),
     path('modele/',include('modele.urls')),
     path('version/',include('version.urls')),

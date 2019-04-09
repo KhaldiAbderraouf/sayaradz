@@ -4,8 +4,8 @@ from django.test import TestCase
 # Create your tests here.
 from rest_framework.test import APITestCase, APIClient, APIRequestFactory, force_authenticate
 
-from accounts.models import Fabriquant, Administrateur, User
-from accounts.serializers import UtilisateurFabriquantSerializer
+from account.models import Fabriquant, Administrateur, User
+from account.serializers import UtilisateurFabriquantSerializer
 from . import views
 from marque.models import Marque
 from . import urls
@@ -65,7 +65,7 @@ class ListFabriquantTestCases(APITestCase):
         client = APIClient()
         user = User.objects.get(email="admin@renault.dz")
         client.force_authenticate(user=user)
-        response = client.get('/accounts/fabriquant/utlisateur/1')
+        response = client.get('/account/fabriquant/utlisateur/1')
         assert response.status_code == 200
         assert len(response.data) == 2
         user1 = Fabriquant.objects.get(email="user1@renault.dz")
@@ -81,17 +81,17 @@ class ListFabriquantTestCases(APITestCase):
         admin = User.objects.get(email= "admin@sayara.dz")
         client = APIClient()
         client.force_authenticate(user=admin)
-        response = client.get('/accounts/fabriquant/utlisateur/1')
+        response = client.get('/account/fabriquant/utlisateur/1')
         assert response.status_code == 200
         assert len(response.data) == 2
-        response = client.get('/accounts/fabriquant/utlisateur/2')
+        response = client.get('/account/fabriquant/utlisateur/2')
         assert response.status_code == 200
         assert len(response.data) == 2
 
     def test_fail_list_fabriquant_not_authenticated(self):
         # Check if there are nor errors while rquesting the view
         client = APIClient()
-        response = client.get('/accounts/fabriquant/utlisateur/1')
+        response = client.get('/account/fabriquant/utlisateur/1')
         self.assertEqual(str(response.data['detail']), "Authentication credentials were not provided.")
         assert response.status_code == 403
 
@@ -99,7 +99,7 @@ class ListFabriquantTestCases(APITestCase):
         client = APIClient()
         user = User.objects.get(email="admin@renault.dz")
         client.force_authenticate(user=user)
-        response = client.get('/accounts/fabriquant/utlisateur/2')
+        response = client.get('/account/fabriquant/utlisateur/2')
         assert response.status_code == 403
 
 
@@ -162,7 +162,7 @@ class CreateUtilisateurFabriquantTestCases(APITestCase):
             'tel': "0265884135",
             #'marque': 1
         }
-        response = client.post('/accounts/fabriquant/utilisateur', data)
+        response = client.post('/account/fabriquant/utilisateur', data)
         self.assertEqual(str(response.data['detail']), "Authentication credentials were not provided.")
         assert response.status_code == 403
 
@@ -178,7 +178,7 @@ class CreateUtilisateurFabriquantTestCases(APITestCase):
             'adresse': "Adresse user2",
             'tel': "0265884135",
         }
-        response = client.post('/accounts/fabriquant/utilisateur', data)
+        response = client.post('/account/fabriquant/utilisateur', data)
         self.assertEqual(str(response.data['detail']), "You do not have permission to perform this action.")
         assert response.status_code == 403
 
@@ -199,7 +199,7 @@ class CreateUtilisateurFabriquantTestCases(APITestCase):
         except:
             user = None
         assert user == None
-        response = client.post('/accounts/fabriquant/utilisateur', data)
+        response = client.post('/account/fabriquant/utilisateur', data)
         assert response.status_code == 201
         expected_user = Fabriquant.objects.get(email="user2@renault.dz")
         assert expected_user != None
@@ -223,7 +223,7 @@ class CreateUtilisateurFabriquantTestCases(APITestCase):
             'tel': "0265884135",
             'marque': 1
         }
-        response = client.post('/accounts/fabriquant/utilisateur', data)
+        response = client.post('/account/fabriquant/utilisateur', data)
         assert response.status_code == 201
 
 
@@ -298,7 +298,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
             'adresse': "Adresse updated",
             'tel': "0265884135",
         }
-        response = client.put('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.put('/account/fabriquant/utilisateur/user1@renault.dz', data)
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert response.status_code == 200
         assert expected_user.adresse == "Adresse updated"
@@ -315,7 +315,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
             'adresse': "Adresse updated",
             'tel': "0265884135",
         }
-        response = client.put('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.put('/account/fabriquant/utilisateur/user1@renault.dz', data)
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert response.status_code == 200
         assert expected_user.adresse == "Adresse updated"
@@ -334,7 +334,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
             'adresse': "Adresse updated2",
             'tel': "0265884135",
         }
-        response = client.put('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.put('/account/fabriquant/utilisateur/user1@renault.dz', data)
         assert response.status_code == 403
         user = Fabriquant.objects.get(email='user1@renault.dz')
         assert user.adresse == old_adresse
@@ -353,7 +353,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
             'adresse': "Adresse updated2",
             'tel': "0265884135",
         }
-        response = client.put('/accounts/fabriquant/utilisateur/user2@renault.dz', data)
+        response = client.put('/account/fabriquant/utilisateur/user2@renault.dz', data)
         assert response.status_code == 403
         user = Fabriquant.objects.get(email='user2@renault.dz')
         assert user.adresse == old_adresse
@@ -370,7 +370,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
             'adresse': "Adresse updated",
             'tel': "0265884135",
         }
-        response = client.put('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.put('/account/fabriquant/utilisateur/user1@renault.dz', data)
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert response.status_code == 200
         assert expected_user.adresse == "Adresse updated"
@@ -388,7 +388,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
         }
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert expected_user.is_active == True
-        response = client.patch('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.patch('/account/fabriquant/utilisateur/user1@renault.dz', data)
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert response.status_code == 200
         assert expected_user.is_active == False
@@ -403,7 +403,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
         }
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert expected_user.is_active == True
-        response = client.patch('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.patch('/account/fabriquant/utilisateur/user1@renault.dz', data)
         expected_user = Fabriquant.objects.get(email='user1@renault.dz')
         assert response.status_code == 200
         assert expected_user.is_active == False
@@ -418,7 +418,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
         }
         user = Fabriquant.objects.get(email='admin@renault.dz')
         assert user.is_active == True
-        response = client.patch('/accounts/fabriquant/utilisateur/admin@renault.dz', data)
+        response = client.patch('/account/fabriquant/utilisateur/admin@renault.dz', data)
         assert response.status_code == 403
         user = Fabriquant.objects.get(email = 'admin@renault.dz')
         assert user.is_active == True
@@ -433,7 +433,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
         }
         user = Fabriquant.objects.get(email='admin@renault.dz')
         assert user.is_active == True
-        response = client.patch('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.patch('/account/fabriquant/utilisateur/user1@renault.dz', data)
         assert response.status_code == 403
         user = Fabriquant.objects.get(email = 'admin@renault.dz')
         assert user.is_active == True
@@ -448,7 +448,7 @@ class UpdateUtilisateurFabriquantTestCases(APITestCase):
         }
         user = Fabriquant.objects.get(email='admin@renault.dz')
         assert user.is_active == True
-        response = client.patch('/accounts/fabriquant/utilisateur/user1@renault.dz', data)
+        response = client.patch('/account/fabriquant/utilisateur/user1@renault.dz', data)
         assert response.status_code == 403
         user = Fabriquant.objects.get(email='admin@renault.dz')
         assert user.is_active == True
@@ -517,7 +517,7 @@ class RetrieveUtilisateursFabriquantTestCases(APITestCase):
     def retrieve_user(self,user,email):
         client = APIClient()
         client.force_authenticate(user=user)
-        response = client.get('/accounts/fabriquant/utilisateur/{}'.format(email))
+        response = client.get('/account/fabriquant/utilisateur/{}'.format(email))
         return response
 
     def test_admin_can_retreive_utilisateur_fabriquant(self):
@@ -616,7 +616,7 @@ class DeleteUtilisateurFabriquantTestCases(APITestCase):
     def delete_user(self,user,email):
         client = APIClient()
         client.force_authenticate(user=user)
-        response = client.delete('/accounts/fabriquant/utilisateur/{}'.format(email))
+        response = client.delete('/account/fabriquant/utilisateur/{}'.format(email))
         return response
 
     def test_admin_delete_utilisatuer_fabriquant(self):
@@ -705,7 +705,7 @@ class CreateAdminFabriquantTestCases(APITestCase):
             'tel': "0265884135",
             'marque': Id_Marque
         }
-        response = client.post('/accounts/fabriquant', data)
+        response = client.post('/account/fabriquant', data)
         return response
 
 
@@ -768,7 +768,7 @@ class WebAuthenticationTestCases(APITestCase):
         }
 
         client = APIClient()
-        response = client.post('/accounts/token', data)
+        response = client.post('/account/token', data)
         return response
 
 

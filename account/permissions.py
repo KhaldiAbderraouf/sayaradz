@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
-from accounts import serializers
-from accounts.models import Automobiliste, User, Fabriquant
+from account import serializers
+from account.models import Automobiliste, User, Fabriquant
 
 
 class IsAutomobiliste(permissions.BasePermission):

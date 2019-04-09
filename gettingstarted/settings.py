@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hello",
-'rest_framework',
+    'rest_framework',
     'corsheaders',
     'marque',
     'modele',
@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'tarif',
     'reservation',
     #accounts handling
-    'accounts',
+    'account',
     #social authentication
     'oauth2_provider',
     'social_django',
@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -142,8 +143,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
 
 # Other Configurations
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-SOCIAL_AUTH_USER_MODEL = 'accounts.Automobiliste'
-AUTH_USER_MODEL = 'accounts.User'
+SOCIAL_AUTH_USER_MODEL = 'account.Automobiliste'
+AUTH_USER_MODEL = 'account.User'
 
 
 WSGI_APPLICATION = "gettingstarted.wsgi.application"

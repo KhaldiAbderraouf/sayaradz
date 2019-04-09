@@ -1,7 +1,7 @@
 from django.urls import path, include
 
-from accounts import views
-URL_ROOT = '/acconts/'
+from account import views
+URL_ROOT = '/account/'
 UTILISATEURS_FABRIQUANT_LIST_END_POINT = 'fabriquant/utlisateur/'
 UTILISATEURS_FABRIQUANT_CREATE_END_POINT = 'fabriquan/utlisateur'
 

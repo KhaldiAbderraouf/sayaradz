@@ -5,7 +5,7 @@ import datetime
 
 from rest_framework.utils import json
 
-from accounts.models import Automobiliste
+from account.models import Automobiliste
 from couleur.models import Couleur
 from modele.models import Modele
 from option.models import Option

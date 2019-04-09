@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from accounts.models import Automobiliste, Fabriquant
+from account.models import Automobiliste, Fabriquant
 from . import models
 
 
