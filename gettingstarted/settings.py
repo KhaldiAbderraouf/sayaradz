@@ -28,13 +28,10 @@ SECRET_KEY = 'x+#h^6i+0-zi4c%de6esy=s&%eziik)r8rrk+qv6mb(8z-@w3y'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.43.106',
-    '127.0.0.1',
     '0.0.0.0',
-    'localhost',
     'sayara.dz',
     'raouf',
-    '78d9ab04.ngrok.io'
+    'protechsayaradz.herokuapp.com'
 ]
 
 
@@ -48,21 +45,21 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hello",
-    'rest_framework',
-    'corsheaders',
-    'marque',
-    'modele',
-    'version',
-    'option',
-    'couleur',
-    'tarif',
-    'reservation',
+    "rest_framework",
+    "corsheaders",
+    "marque",
+    "modele",
+    "version",
+    "option",
+    "couleur",
+    "tarif",
+    "reservation",
     #accounts handling
-    'account',
+    "account",
     #social authentication
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
+    "oauth2_provider",
+    "social_django",
+    "rest_framework_social_oauth2",
 ]
 
 MIDDLEWARE = [
@@ -79,18 +76,12 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    '192.168.56.1:3000'
-    'localhost:3000',
-    '78d9ab04.ngrok.io:3000',
-    'localhost:5000',
-    '78d9ab04.ngrok.io:5000',
+    'protechsayaradz.herokuapp.com3000',
+    'protechsayaradz.herokuapp.com:5000',
 ]
 CORS_ORIGIN_REGEX_WHITELIST = [
-    '192.168.56.1:3000'
-    'localhost:3000',
-    '78d9ab04.ngrok.io:3000',
-    'localhost:5000',
-    '78d9ab04.ngrok.io:5000',
+    'protechsayaradz.herokuapp.com3000',
+    'protechsayaradz.herokuapp.com:5000',
 ]
 
 

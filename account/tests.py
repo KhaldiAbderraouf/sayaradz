@@ -4,8 +4,8 @@ from django.test import TestCase
 # Create your tests here.
 from rest_framework.test import APITestCase, APIClient, APIRequestFactory, force_authenticate
 
-from account.models import Fabriquant, Administrateur, User
-from account.serializers import UtilisateurFabriquantSerializer
+from .models import Fabriquant, Administrateur, User
+from .serializers import UtilisateurFabriquantSerializer
 from . import views
 from marque.models import Marque
 from . import urls
