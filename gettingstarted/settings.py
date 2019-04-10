@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "couleur",
     "tarif",
     "reservation",
+    "annonce",
     #accounts handling
     "account",
     #social authentication
