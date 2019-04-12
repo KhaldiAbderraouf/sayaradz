@@ -15,11 +15,13 @@ class Reservations(ListAPIView):
     def get_queryset(self):
         Id_Marque = self.kwargs.get('Id_Marque')
         cmds = Commande.objects.all()
-        cmds_ids = []
-        for o in cmds:
-            if (str(o.get_marque()) == str(Id_Marque)):
-                cmds_ids.append(o)
-        return cmds_ids
+        print(cmds)
+        # cmds_ids = []
+        # for o in cmds:
+        #     if (str(o.get_marque()) == str(Id_Marque)):
+        #         cmds_ids.append(o)
+        # return cmds_ids
+        return cmds
 
 class Vehicules(ListAPIView):
     serializer_class = Vehicule_Sereializer
