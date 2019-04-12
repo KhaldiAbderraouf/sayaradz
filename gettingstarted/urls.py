@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls.static import static
 from django.urls import path, include
 
 from django.contrib import admin
@@ -30,8 +31,8 @@ urlpatterns = [
     path('couleur/', include('couleur.urls')),
     path('tarif/', include('tarif.urls')),
     path('reservation/', include('reservation.urls')),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
-]
+    # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
