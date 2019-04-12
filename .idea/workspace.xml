@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00366925-6e2a-49f7-9605-f4f37f8d6e8a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettingstarted/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gettingstarted/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reservation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/reservation/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gettingstarted/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+            <state relative-caret-position="172">
+              <caret line="187" column="66" lean-forward="true" selection-start-line="187" selection-start-column="66" selection-end-line="187" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -205,7 +203,7 @@
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17125838" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17125838" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -216,7 +214,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4988831" visible="true" weight="0.40759075" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4988831" visible="true" weight="0.40759075" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50111693" side_tool="true" weight="0.38283828" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32838285" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -576,8 +574,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gettingstarted/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+        <state relative-caret-position="172">
+          <caret line="187" column="66" lean-forward="true" selection-start-line="187" selection-start-column="66" selection-end-line="187" selection-end-column="66" />
         </state>
       </provider>
     </entry>
