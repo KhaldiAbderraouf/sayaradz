@@ -1,5 +1,7 @@
 from rest_framework import generics
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, get_object_or_404
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from modele.models import Modele
 from modele.serializers import Modele_Sereializer
@@ -21,6 +23,15 @@ class ListAllModels(ListAPIView):
 
     def get_queryset(self):
         return Modele.objects.all()
+
+class Supp(APIView):
+
+    def post(self,request):
+        id = request.POST.get('Code_Modele')
+        modele = get_object_or_404(Modele,Code_Modele = id)
+        modele.delete()
+        return Response(status=201)
+
 
 class NewModele(generics.ListCreateAPIView):
     queryset = Modele.objects.all()

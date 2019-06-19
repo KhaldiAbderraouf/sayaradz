@@ -7,6 +7,7 @@ class Version_Sereializer(serializers.ModelSerializer):
     class Meta:
         model = Version
         fields = [
+            'Id_Modele',
             'Nom_Version',
             'Code_Version'
         ]
@@ -28,6 +29,7 @@ class Version_Option_Sereializer(serializers.ModelSerializer):
     class Meta:
         model = Version
         fields = [
+            'Id_Modele',
             'Nom_Version',
             'Code_Version',
             'option_Version'
