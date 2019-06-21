@@ -41,3 +41,49 @@ class ModelesAPITestCases(APITestCase):
         response = client.get('/modele/1')
         assert response.status_code == 200
 
+    def test_new(self):
+        client = APIClient()
+        data = {
+            'Code_Modele': "m5",
+            'Id_Marque': "1",
+            'Nom_Modele': "modele_test",
+        }
+        try:
+            user = Modele.objects.get(Code_Modele = "m5")
+        except:
+            user = None
+        assert user == None
+        response = client.post('/modele/new', data)
+        assert response.status_code == 201
+        expected_user = Modele.objects.get(Code_Modele = "m5")
+        assert expected_user != None
+
+    def test_delete(self):
+        client = APIClient()
+        data = {
+            'Code_Modele': "m5",
+            'Id_Marque': "1",
+            'Nom_Modele': "modele_test",
+        }
+        try:
+            user = Modele.objects.get(Code_Modele = "m5")
+        except:
+            user = None
+        assert user == None
+        response = client.post('/modele/new', data)
+        response = client.get('/modele/')
+        assert response.status_code == 200
+        assert len(response.data) == 5
+        response = client.post('/modele/delete', data)
+        assert response.status_code == 201
+        response = client.get('/modele/')
+        assert len(response.data) == 4
+
+    def test_modif(self):
+        client = APIClient()
+        response = client.patch('/modele/update/m1/modele_modifier')
+        print(response)
+        assert response.status_code == 200
+        response = client.get('/modele/')
+        marque_modifier = response.data[0]
+        assert marque_modifier["Nom_Modele"] == "modele_modifier"

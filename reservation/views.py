@@ -55,6 +55,7 @@ class valider(APIView):
     def post(self, request):
         nm = request.kwargs['Numero_Chassis']
         vehicule = Vehicule.objects.get(Numero_Chassis = nm)
+        # draham
         vehicule.delete()
 
 class Commander(generics.ListCreateAPIView):
