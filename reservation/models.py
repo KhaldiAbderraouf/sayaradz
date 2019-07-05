@@ -25,7 +25,8 @@ class Vehicule(models.Model):
     Code_Version = models.ForeignKey(Version, on_delete = models.CASCADE)
     Code_Couleur = models.ForeignKey(Couleur, on_delete = models.CASCADE)
     Liste_Option = models.ManyToManyField(Option, through = 'List_option',through_fields=('vehicule', 'option'))
-    Reservation = models.ManyToManyField(Automobiliste, through = 'Commande',through_fields=('vehicule', 'automobiliste'))
+    Reservation = models.ManyToManyField(Automobiliste, through = 'reservations',through_fields=('vehicule', 'automobiliste'))
+    Vendu = models.BooleanField(default = False)
 
     def get_marque(self):
         try :
@@ -53,7 +54,7 @@ class List_Option(models.Model):
         return Option.objects.get(Code_Option = self.option.Code_Option).Nom_Option
 
 
-class Commande(models.Model):
+class reservations(models.Model):
     automobiliste = models.ForeignKey(Automobiliste, on_delete = models.CASCADE)
     vehicule = models.ForeignKey(Vehicule, on_delete = models.CASCADE)
     date = models.DateField(blank = None, default = datetime.date.today)

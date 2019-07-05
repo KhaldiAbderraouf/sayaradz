@@ -56,6 +56,7 @@ class ListUtilisateurFabriquantView(ListAPIView):
         self.check_object_permissions(self.request, id_marque)
         return Fabriquant.objects.filter(marque = id_marque)
 
+
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 

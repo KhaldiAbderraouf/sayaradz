@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 from reservation.disponibilité.Option_Vehicule import Options_de_vehicule
-from reservation.models import Vehicule, List_Option, Commande
+from reservation.models import Vehicule, List_Option, reservations
 
 
 class Vehicule_Sereializer(serializers.ModelSerializer):
@@ -18,7 +18,28 @@ class Vehicule_Sereializer(serializers.ModelSerializer):
             'Code_Version',
             'Code_Couleur',
             'Liste_Option',
-            'Reservasion'
+            'Reservation'
+
+        ]
+
+    def get_Marque(self,object):
+        return object.get_marque()
+
+    def get_Modele(self,object):
+        return object.get_modele()
+class Vehicule_Sereializer_r(serializers.ModelSerializer):
+    Marque = serializers.SerializerMethodField()
+    Modele = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Vehicule
+        fields = [
+            'Numero_Chassis',
+            'Marque',
+            'Modele',
+            'Code_Version',
+            'Code_Couleur',
+            'Liste_Option'
 
         ]
 
@@ -42,7 +63,7 @@ class Vehicule_Sereializer_Disp(serializers.ModelSerializer):
             'Code_Version',
             'Code_Couleur',
             'options_vehicule',
-            'Reservasion'
+            'Reservation'
 
         ]
 
@@ -72,7 +93,7 @@ class Commande_Sereializer(serializers.ModelSerializer):
     Marque = serializers.SerializerMethodField()
 
     class Meta:
-        model = Commande
+        model = reservations
         fields = [
             'automobiliste',
             'vehicule',

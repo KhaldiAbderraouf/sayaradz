@@ -31,7 +31,8 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     'sayara.dz',
     'raouf',
-    'protechsayaradz.herokuapp.com'
+    'protechsayaradz.herokuapp.com',
+    '192.168.43.106'
 ]
 
 
