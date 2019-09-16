@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from . import views
-URL_ROOT = '/account/'
+URL_ROOT = '/accounts/'
 UTILISATEURS_FABRIQUANT_LIST_END_POINT = 'fabriquant/utlisateur/'
 UTILISATEURS_FABRIQUANT_CREATE_END_POINT = 'fabriquan/utlisateur'
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('fabriquant/utilisateur',views.FabriquantView.as_view()),
     path('fabriquant',views.AdminFabriquantCreation.as_view()),
     path('fabriquant/utilisateur/<str:email>',views.RUDUtilisateurFabriquant.as_view()),
-
+    path('type',views.UserType.as_view()),
+    path('changepassword', views.ChangePasswordView.as_view()),
 ]

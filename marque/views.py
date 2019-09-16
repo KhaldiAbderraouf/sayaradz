@@ -23,7 +23,7 @@ class NewMarque(generics.ListCreateAPIView):
 class Supp(APIView):
 
     def post(self,request):
-        id = request.POST.get('Id_Marque')
+        id = request.data['Id_Marque']
         marque = get_object_or_404(Marque,Id_Marque = id)
         marque.delete()
         return Response(status=201)

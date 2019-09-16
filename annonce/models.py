@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 from account.models import Automobiliste
@@ -12,6 +14,7 @@ class Annonce(models.Model):
     Couleur = models.ForeignKey(Couleur, on_delete=models.CASCADE,null=True,blank=True)
     Version = models.ForeignKey(Version, on_delete=models.CASCADE,blank=True)
     Options= models.ManyToManyField(Option,related_name='Annonces')
+    date = models.DateField(blank=None, default=datetime.date.today)
 
 class AnnonceOption(models.Model):
     annonce = models.ForeignKey(Annonce, on_delete=models.CASCADE)

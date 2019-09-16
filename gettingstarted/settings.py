@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "tarif",
     "reservation",
     "annonce",
+    "stock",
     #accounts handling
     "account",
     #social authentication
@@ -121,7 +122,7 @@ AUTHENTICATION_BACKENDS = (
 # Facebook configurations
 SOCIAL_AUTH_FACEBOOK_KEY = '401775580383688'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'fabdcec4d7eff90a4fed57a50dd2461d'
-SOCIAL_AUTH_FACEBOOK_API_VERSION = '3.2'
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '4.0'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', ]
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {

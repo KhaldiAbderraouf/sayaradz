@@ -23,7 +23,7 @@ class Tarif_Option_List(ListAPIView):
 
     def get_queryset(self):
         option = self.kwargs['Code_Option']
-        return Tarif_Version.objects.filter(Option = option)
+        return Tarif_Option.objects.filter(Option = option)
 
 #     =====================================================================================
 
@@ -32,7 +32,7 @@ class Tarif_Couleur_List(ListAPIView):
 
     def get_queryset(self):
         couleur = self.kwargs['Code_Couleur']
-        return Tarif_Version.objects.filter(Couleur = couleur)
+        return Tarif_Couleur.objects.filter(Couleur = couleur)
 
 #     =====================================================================================
 
@@ -40,9 +40,7 @@ class Tarif_Couleur_List(ListAPIView):
 class test(APIView):
 
     def post(self, request):
-        # form = DocumentForm(request.POST, request.FILES)
-        # if form.is_valid():
-            # newdoc = Document(docfile = request.FILES['docfile'])
+
         newdoc = request.FILES['filename']
         tarif_builder = Tarif_Builder()
         if (tarif_builder.Tarif_Handle(newdoc)):

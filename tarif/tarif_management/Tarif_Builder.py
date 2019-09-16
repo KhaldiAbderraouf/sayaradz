@@ -3,6 +3,7 @@ from option.models import Option
 from tarif.models import Tarif_Version, Tarif_Option, Tarif_Couleur
 from dateutil.parser import parse
 
+from tarif.serializers import Tarif_Option_Sereializer, Tarif_Version_Sereializer, Tarif_Couleur_Sereializer
 from version.models import Version
 
 
@@ -10,8 +11,11 @@ class Tarif_Builder():
     def Tarif_Handle(self,file):
         for raw in file:
             row = raw.decode("utf-8")
-            r = row.split(";")
-            self.create_tarif(r)
+            try:
+                r = row.split(";")
+                self.create_tarif(r)
+            except:
+                return False
         return True
 
     def create_tarif(self,r):
@@ -29,7 +33,9 @@ class Tarif_Builder():
             dtf = parse(r[3])
             px = float(r[4])
             tarif_Version = Tarif_Version.objects.create(Version = cdv, Date_Debut = dtd, Date_Fin = dtf, Prix = px)
-            tarif_Version.save()
+            serializer = Tarif_Version_Sereializer(tarif_Version)
+            if serializer.is_valid():
+                    serializer.save()
 
     def save_option(self,r):
         cdo =  Option.objects.get(Code_Option = r[1])
@@ -38,7 +44,9 @@ class Tarif_Builder():
             dtf = parse(r[3])
             px = float(r[4])
             tarif_Option = Tarif_Option.objects.create(Option = cdo, Date_Debut = dtd, Date_Fin = dtf, Prix = px)
-            tarif_Option.save()
+            serializer = Tarif_Option_Sereializer(tarif_Option)
+            if serializer.is_valid():
+                serializer.save()
 
     def save_couleur(self,r):
         cdc = Couleur.objects.get(Code_Couleur = r[1])
@@ -47,4 +55,6 @@ class Tarif_Builder():
             dtf = parse(r[3])
             px = float(r[4])
             tarif_Couleur = Tarif_Couleur.objects.create(Couleur = cdc, Date_Debut = dtd, Date_Fin = dtf, Prix = px)
-            tarif_Couleur.save()
+            serializer = Tarif_Couleur_Sereializer(tarif_Couleur)
+            if serializer.is_valid():
+                serializer.save()

@@ -9,6 +9,7 @@ urlpatterns = [
     path('modele', views.add_modele.as_view()),
     path('new', views.New_Couleur.as_view()),
     path('delete', views.Supp.as_view()),
+    path('marque/<str:Id_Marque>', views.Couleur_By_Marque.as_view()),
     path('<str:Id_Modele>', views.Couleur_By_Modele.as_view()),
     url(r'^update/(?P<pk>[-\w]+)/(?P<name>[-\w]+)/(?P<hex>[-\w]+)$', UpdateView.as_view()),
 ]

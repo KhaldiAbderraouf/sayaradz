@@ -33,7 +33,7 @@ class New_Option(generics.ListCreateAPIView):
 class Supp(APIView):
 
     def post(self,request):
-        id = request.POST.get('Code_Option')
+        id = request.data['Code_Option']
         option = get_object_or_404(Option,Code_Option = id)
         option.delete()
         return Response(status=201)

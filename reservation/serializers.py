@@ -95,6 +95,7 @@ class Commande_Sereializer(serializers.ModelSerializer):
     class Meta:
         model = reservations
         fields = [
+            'pk',
             'automobiliste',
             'vehicule',
             'date',
@@ -119,3 +120,18 @@ class Options_Vehicule_Sereializer(serializers.ModelSerializer):
     def get_options_vehicule(self,object):
         t = Options_de_vehicule()
         return t.get_options(object.Numero_Chassis)
+
+class vehicule_save(serializers.ModelSerializer):
+
+    class Meta:
+        model = Vehicule
+        fields = [
+            'Numero_Chassis',
+            'Concessionnaire',
+            'Code_Version',
+            'Code_Couleur',
+            'Liste_Option',
+            'Reservation',
+            'Vendu'
+
+        ]

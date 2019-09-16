@@ -31,6 +31,7 @@ urlpatterns = [
     path('couleur/', include('couleur.urls')),
     path('tarif/', include('tarif.urls')),
     path('reservation/', include('reservation.urls')),
+    path('stock/', include('stock.urls')),
     # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

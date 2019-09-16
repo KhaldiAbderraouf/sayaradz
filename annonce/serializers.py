@@ -93,7 +93,7 @@ class Annonce_Sereializer(serializers.HyperlinkedModelSerializer):
     Images_Annonce = Image_Annonce_Sereializer( many=True,required=False,read_only=False)
     class Meta:
         model = Annonce
-        fields = ('Prix_Minimal','Description','automobiliste','Id_Automobiliste','Couleur','Version','Options','Images_Annonce')
+        fields = ('Prix_Minimal','Description','automobiliste','Id_Automobiliste','Couleur','Version','Options','Images_Annonce','date')
 
 
     @transaction.atomic
@@ -130,7 +130,7 @@ class AnnonceView_Sereializer(serializers.HyperlinkedModelSerializer):
     Version = Version_Serializer(many=False, read_only=True)
     class Meta:
         model = Annonce
-        fields = ('Prix_Minimal','Description','Automobiliste', 'Couleur','Version','Options','Images_Annonce',)
+        fields = ('Prix_Minimal','Description','Automobiliste', 'Couleur','Version','Options','Images_Annonce','date')
 
 
 

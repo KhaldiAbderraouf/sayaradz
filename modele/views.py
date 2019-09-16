@@ -27,7 +27,8 @@ class ListAllModels(ListAPIView):
 class Supp(APIView):
 
     def post(self,request):
-        id = request.POST.get('Code_Modele')
+        id = request.data['Code_Modele']
+        print(id)
         modele = get_object_or_404(Modele,Code_Modele = id)
         modele.delete()
         return Response(status=201)

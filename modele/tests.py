@@ -57,6 +57,9 @@ class ModelesAPITestCases(APITestCase):
         assert response.status_code == 201
         expected_user = Modele.objects.get(Code_Modele = "m5")
         assert expected_user != None
+        response = client.get('/modele/')
+        assert response.status_code == 200
+        assert len(response.data) == 5
 
     def test_delete(self):
         client = APIClient()
@@ -82,7 +85,6 @@ class ModelesAPITestCases(APITestCase):
     def test_modif(self):
         client = APIClient()
         response = client.patch('/modele/update/m1/modele_modifier')
-        print(response)
         assert response.status_code == 200
         response = client.get('/modele/')
         marque_modifier = response.data[0]

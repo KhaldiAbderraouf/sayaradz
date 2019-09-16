@@ -60,6 +60,7 @@ class reservations(models.Model):
     date = models.DateField(blank = None, default = datetime.date.today)
     montant = models.FloatField(blank = None, default=0.0)
     reserver = models.BooleanField(default = False)
+    accepter = models.BooleanField(default=False)
 
     def get_marque(self):
         try :
