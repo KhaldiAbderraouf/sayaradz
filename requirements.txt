@@ -17,7 +17,7 @@ django-braces==1.13.0
 django-cors-headers==2.5.2
 django-oauth-toolkit==1.2.0
 django-rest-framework-social-oauth2==1.1.0
-djangorestframework==3.9.2
+djangorestframework==3.11.2
 more-itertools==6.0.0
 oauthlib==3.0.1
 Pillow==5.4.1
